@@ -1,0 +1,417 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Maison Aurelia — Private Cultural Salon
+ * European luxury palette: oxblood, forest, parchment, tobacco, antique gold.
+ * Tailwind v4: design tokens registered via @theme inline so utilities
+ * like bg-oxblood, text-charcoal, border-gold-soft, etc. compile.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 0px);
+  --radius-md: calc(var(--radius) + 2px);
+  --radius-lg: calc(var(--radius) + 4px);
+
+  /* Semantic shadcn tokens */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-hairline: hsl(var(--hairline));
+
+  /* Brand palette */
+  --color-parchment: hsl(var(--parchment));
+  --color-parchment-soft: hsl(var(--parchment-soft));
+  --color-parchment-deep: hsl(var(--parchment-deep));
+  --color-oxblood: hsl(var(--oxblood));
+  --color-oxblood-deep: hsl(var(--oxblood-deep));
+  --color-forest: hsl(var(--forest));
+  --color-forest-deep: hsl(var(--forest-deep));
+  --color-tobacco: hsl(var(--tobacco));
+  --color-charcoal: hsl(var(--charcoal));
+  --color-gold: hsl(var(--gold));
+  --color-gold-soft: hsl(var(--gold-soft));
+  --color-gold-deep: hsl(var(--gold-deep));
+
+  --font-display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  /* Warm parchment base */
+  --background: 38 28% 92%;
+  --foreground: 25 15% 18%;
+
+  --parchment: 38 28% 92%;
+  --parchment-soft: 36 22% 88%;
+  --parchment-deep: 34 18% 82%;
+
+  --oxblood: 358 38% 22%;
+  --oxblood-deep: 358 42% 16%;
+  --forest: 100 18% 18%;
+  --forest-deep: 100 22% 12%;
+  --tobacco: 28 32% 30%;
+  --charcoal: 25 10% 22%;
+
+  --gold: 38 48% 52%;
+  --gold-soft: 40 36% 64%;
+  --gold-deep: 36 50% 38%;
+
+  --card: 38 32% 95%;
+  --card-foreground: 25 15% 18%;
+
+  --popover: 38 32% 95%;
+  --popover-foreground: 25 15% 18%;
+
+  --primary: 358 38% 22%;
+  --primary-foreground: 38 28% 94%;
+
+  --secondary: 36 22% 86%;
+  --secondary-foreground: 25 15% 18%;
+
+  --muted: 34 16% 84%;
+  --muted-foreground: 25 8% 38%;
+
+  --accent: 38 48% 52%;
+  --accent-foreground: 25 15% 18%;
+
+  --destructive: 358 50% 32%;
+  --destructive-foreground: 38 28% 94%;
+
+  --border: 34 14% 78%;
+  --input: 34 14% 74%;
+  --ring: 38 48% 52%;
+
+  --hairline: 36 18% 72%;
+
+  --radius: 0.125rem;
+
+  --shadow-sm: 0 1px 2px hsl(25 14% 12% / 0.05);
+  --shadow-card: 0 1px 2px hsl(25 14% 12% / 0.05), 0 12px 36px -16px hsl(25 14% 12% / 0.18);
+  --shadow-elevated: 0 2px 4px hsl(25 14% 12% / 0.06), 0 30px 80px -28px hsl(25 14% 12% / 0.32);
+
+  --ease-refined: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * { border-color: hsl(var(--border)); }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    text-rendering: optimizeLegibility;
+    background-image: radial-gradient(hsl(25 14% 12% / 0.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+  }
+}
+
+@layer components {
+  .label-eyebrow {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: hsl(var(--gold-deep));
+    font-weight: 500;
+  }
+
+  .label-eyebrow-light {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: hsl(var(--gold));
+    font-weight: 500;
+  }
+
+  .num-display {
+    font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
+    color: hsl(var(--gold));
+    letter-spacing: -0.04em;
+  }
+
+  .hairline-gold {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(to right, transparent, hsl(var(--gold) / 0.6), transparent);
+  }
+
+  .container-editorial {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1320px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .container-editorial { padding-left: 2rem; padding-right: 2rem; }
+  }
+  @media (min-width: 1024px) {
+    .container-editorial { padding-left: 3.5rem; padding-right: 3.5rem; }
+  }
+
+  .panel {
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: 2px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .panel-dark {
+    background: hsl(var(--oxblood-deep));
+    border: 1px solid hsl(var(--gold) / 0.25);
+    border-radius: 2px;
+    color: hsl(var(--parchment));
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .btn-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    background-color: hsl(var(--oxblood));
+    color: hsl(var(--parchment));
+    padding: 18px 2.25rem;
+    border-radius: 2px;
+    transition: all 500ms;
+    border: 1px solid hsl(var(--oxblood));
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 500ms;
+    background: hsl(var(--oxblood-deep));
+  }
+  .btn-primary:hover::before { opacity: 1; }
+  .btn-primary > * { position: relative; z-index: 10; }
+  .btn-primary:hover {
+    box-shadow: 0 12px 30px -10px hsl(var(--oxblood) / 0.5);
+    transform: translateY(-1px);
+  }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    background: transparent;
+    color: hsl(var(--charcoal));
+    padding: 18px 2rem;
+    border-radius: 2px;
+    border: 1px solid hsl(var(--gold) / 0.6);
+    transition: all 500ms;
+  }
+  .btn-gold:hover {
+    border-color: hsl(var(--gold));
+    background-color: hsl(var(--gold) / 0.08);
+  }
+
+  .btn-gold-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    background-color: hsl(var(--gold));
+    color: hsl(var(--oxblood-deep));
+    padding: 18px 2.25rem;
+    border-radius: 2px;
+    transition: all 500ms;
+  }
+  .btn-gold-dark:hover { background-color: hsl(var(--gold-soft)); }
+
+  .link-underline { position: relative; display: inline-block; }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 500ms var(--ease-refined);
+  }
+  .link-underline:hover::after { transform-origin: left; transform: scaleX(1); }
+
+  .side-rail {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: hsl(var(--gold-deep));
+  }
+}
+
+@layer utilities {
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s var(--ease-refined), transform 1.2s var(--ease-refined);
+  }
+  .fade-up.in-view { opacity: 1; transform: translateY(0); }
+
+  .drift { transition: transform 1.2s var(--ease-refined); }
+  .drift:hover { transform: translateY(-6px); }
+
+  /* Elevated paper shadow */
+  .shadow-elevated {
+    box-shadow:
+      0 2px 4px hsl(25 14% 12% / 0.06),
+      0 30px 80px -28px hsl(25 14% 12% / 0.32);
+  }
+  .hover\:shadow-elevated:hover {
+    box-shadow:
+      0 2px 4px hsl(25 14% 12% / 0.06),
+      0 30px 80px -28px hsl(25 14% 12% / 0.32);
+  }
+}
+
+/* Hero entrance animations */
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-drift-in {
+  from { opacity: 0; transform: translateY(28px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-fade-in {
+  animation: hero-fade-in 1.4s var(--ease-refined) both;
+}
+.animate-drift-in {
+  animation: hero-drift-in 1.6s var(--ease-refined) 200ms both;
+}
+
+/* ============================================================
+   ScrollScenesIntro — cinematic reveal primitives
+   Triggers when parent gets .scene-in via IntersectionObserver.
+   Each child stagger via inline --d (delay ms).
+   ============================================================ */
+
+.scene-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 1.2s var(--ease-refined),
+    transform 1.2s var(--ease-refined);
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform;
+}
+.scene-in .scene-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scene-reveal-soft {
+  opacity: 0;
+  transition: opacity 1.6s var(--ease-refined);
+  transition-delay: var(--d, 0ms);
+}
+.scene-in .scene-reveal-soft { opacity: 1; }
+
+/* Drift primitive — small floating motion for monogram/cards */
+.scene-drift {
+  opacity: 0;
+  transform: translateY(36px) scale(0.985);
+  transition:
+    opacity 1.6s var(--ease-refined),
+    transform 1.6s var(--ease-refined);
+  transition-delay: var(--d, 0ms);
+}
+.scene-in .scene-drift {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Mask reveal — used for image scenes */
+.scene-mask {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.6s var(--ease-refined);
+  transition-delay: var(--d, 0ms);
+}
+.scene-in .scene-mask { clip-path: inset(0 0 0 0); }
+
+/* Antique-gold divider draws in horizontally */
+.scene-rule {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.4s var(--ease-refined);
+  transition-delay: var(--d, 0ms);
+}
+.scene-in .scene-rule { transform: scaleX(1); }
+
+/* Slow ambient drift loop (monogram float) */
+@keyframes scene-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.scene-float {
+  animation: scene-float 7s var(--ease-refined) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-reveal,
+  .scene-reveal-soft,
+  .scene-drift,
+  .scene-mask,
+  .scene-rule {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+  .scene-float { animation: none !important; }
+  .animate-fade-in,
+  .animate-drift-in { animation: none !important; }
+}
