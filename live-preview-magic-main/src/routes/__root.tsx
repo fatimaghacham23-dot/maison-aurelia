@@ -1,7 +1,5 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-
-import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -26,52 +24,9 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Maison Aurelia | Private Cultural Salon" },
-      { name: "description", content: "Maison Aurelia is a private cultural salon concept for collectors, patrons, and devotees of the arts, prepared as a refined client presentation." },
-      { name: "author", content: "Maison Aurelia" },
-      { property: "og:title", content: "Maison Aurelia | Private Cultural Salon" },
-      { property: "og:description", content: "A private cultural salon concept for collectors, patrons, and devotees of the arts." },
-      { property: "og:site_name", content: "Maison Aurelia" },
-      { property: "og:locale", content: "en_US" },
-      { name: "twitter:title", content: "Maison Aurelia | Private Cultural Salon" },
-      { name: "twitter:description", content: "A private cultural salon concept for collectors, patrons, and devotees of the arts." },
-      { name: "theme-color", content: "#3a0a0a" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap",
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   return (
